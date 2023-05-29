@@ -1,14 +1,11 @@
 import React from 'react';
-import './App.css';
+import s from './App.module.scss';
+import logo from '../../assets/images/logo.svg';
 
 function App() {
-  const a = {};
-
-  a.r = 1;
-
   return (
-    <div className="App">
-      <h1>Hi</h1>
+    <div className={s.App}>
+      <img src={logo} alt="Aviasales" />
     </div>
   );
 }
