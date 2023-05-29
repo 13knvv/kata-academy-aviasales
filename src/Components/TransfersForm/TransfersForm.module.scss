@@ -1,0 +1,75 @@
+@import '../../assets/styles/variables.scss';
+
+.TransfersForm {
+  &Fieldset {
+    padding: 20px 0 10px 0;
+    margin: 0;
+    border: none;
+  }
+
+  &Title {
+    padding: 20px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &Field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &Label {
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    padding: 10px 20px 10px 50px;
+    cursor: pointer;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:hover {
+      background-color: #f1fcff;
+      transition: background-color 0.3s;
+    }
+  }
+
+  &Input, &CustomCheckbox {
+    position: absolute;
+    left: 20px;
+    width: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  &Input {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  &CustomCheckbox {
+    content: '';
+    border: 1px solid $color-checkbox;
+    border-radius: 3px;
+  }
+
+  &Input:focus + &CustomCheckbox {
+    border-color: $color-active;
+  }
+
+  &Input:focus ~ &Label {
+    background-color: #f1fcff;
+    transition: background-color 0.3s;
+  }
+
+  &Input:checked + &CustomCheckbox {
+    border-color: $color-active;
+    background-image: url('../../assets/images/checked.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

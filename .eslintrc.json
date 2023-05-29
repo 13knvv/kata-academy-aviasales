@@ -30,7 +30,15 @@
     "react/prop-types": "off",
     "semi": [1, "always"],
     "no-plusplus": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

@@ -1,0 +1,13 @@
+@import '../../assets/styles/variables.scss';
+
+.Cards {
+  @include reset-list;
+  display: grid;
+  gap: 20px;
+}
+
+.Card {
+  background-color: $color-block;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+}

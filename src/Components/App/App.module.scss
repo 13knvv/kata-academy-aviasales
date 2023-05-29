@@ -1,4 +1,81 @@
+@import '../../assets/styles/variables.scss';
+
 .App {
-  display: flex;
+  display: grid;
+  grid-template-columns: 232px 502px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'logo logo'
+    'aside main';
   justify-content: center;
+  align-items: start;
+  gap: 20px;
+}
+
+.AppLogo {
+  grid-area: logo;
+  display: block;
+  margin: 35px auto 10px;
+  width: 90px;
+  height: 90px;
+}
+
+.AppAside {
+  grid-area: aside;
+  background-color: $color-block;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+}
+
+.AppMain {
+  grid-area: main;
+  display: grid;
+  gap: 20px;
+}
+
+.Tabs {
+  @include reset-list;
+  display: flex;
+}
+
+.TabsItem {
+  width: 33.333%;
+  border: 1px solid #dfe5ec;
+  border-left: none;
+  overflow: hidden;
+
+  &:first-child {
+    border-left: 1px solid #dfe5ec;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}
+
+.Tab {
+  width: 100%;
+  padding: 15px;
+  background-color: $color-block;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &Active {
+    background-color: $color-active;
+    color: #fff;
+  }
+}
+
+.ButtonMore {
+  padding: 15px;
+  background-color: $color-active;
+  border: none;
+  border-radius: $border-radius;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
 }
