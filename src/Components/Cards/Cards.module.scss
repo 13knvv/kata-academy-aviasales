@@ -37,10 +37,18 @@
     font-size: 12px;
     font-weight: 600;
     margin: 3px 0;
+
+    @media screen and (max-width: $phone) {
+      font-size: 10px;
+    }
   }
 
   &Info {
     font-size: 14px;
     font-weight: 600;
+
+    @media screen and (max-width: $phone) {
+      font-size: 12px;
+    }
   }
 }

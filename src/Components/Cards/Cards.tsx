@@ -16,11 +16,11 @@ function Cards() {
               <div className={s.flightInfo}>10:45 – 08:00</div>
             </li>
             <li>
-              <h3 className={s.flightSubTitle}>MOW – HKT</h3>
-              <div className={s.flightInfo}>10:45 – 08:00</div>
+              <h3 className={s.flightSubTitle}>В пути</h3>
+              <div className={s.flightInfo}>21ч 15м</div>
             </li>
             <li>
-              <h3 className={s.flightSubTitle}>MOW – HKT</h3>
+              <h3 className={s.flightSubTitle}>2 пересадки</h3>
               <div className={s.flightInfo}>10:45 – 08:00</div>
             </li>
           </ul>
@@ -30,11 +30,11 @@ function Cards() {
               <div className={s.flightInfo}>10:45 – 08:00</div>
             </li>
             <li>
-              <h3 className={s.flightSubTitle}>MOW – HKT</h3>
-              <div className={s.flightInfo}>10:45 – 08:00</div>
+              <h3 className={s.flightSubTitle}>В пути</h3>
+              <div className={s.flightInfo}>21ч 15м</div>
             </li>
             <li>
-              <h3 className={s.flightSubTitle}>MOW – HKT</h3>
+              <h3 className={s.flightSubTitle}>2 пересадки</h3>
               <div className={s.flightInfo}>10:45 – 08:00</div>
             </li>
           </ul>

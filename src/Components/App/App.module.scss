@@ -10,6 +10,20 @@
   justify-content: center;
   align-items: start;
   gap: 20px;
+  padding: 0 20px 40px 20px;
+
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'logo'
+      'aside'
+      'main';
+      gap: 15px;
+  }
+
+  @media screen and (max-width: $phone) {
+    padding: 0 10px 40px 10px;
+  }
 }
 
 .AppLogo {
@@ -18,6 +32,14 @@
   margin: 35px auto 10px;
   width: 90px;
   height: 90px;
+
+  @media screen and (max-width: $tablet) {
+    margin: 20px auto 0;
+  }
+
+  @media screen and (max-width: $phone) {
+    margin: 10px auto 0;
+  }
 }
 
 .AppAside {
@@ -36,6 +58,10 @@
 .Tabs {
   @include reset-list;
   display: flex;
+
+  @media screen and (max-width: $phone) {
+    flex-direction: column;
+  }
 }
 
 .TabsItem {
@@ -44,15 +70,32 @@
   border-left: none;
   overflow: hidden;
 
+  @media screen and (max-width: $phone) {
+    width: 100%;
+    border-left: 1px solid #dfe5ec;
+    border-top: none;
+  }
+
   &:first-child {
     border-left: 1px solid #dfe5ec;
     border-top-left-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
+
+    @media screen and (max-width: $phone) {
+      border-top: 1px solid #dfe5ec;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: $border-radius;
+    }
   }
 
   &:last-child {
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
+
+    @media screen and (max-width: $phone) {
+      border-top-right-radius: 0;
+      border-bottom-left-radius: $border-radius;
+    }
   }
 }
 
@@ -64,9 +107,23 @@
   text-transform: uppercase;
   cursor: pointer;
 
-  &Active {
+  &:focus {
+    outline-color: $color-active;
+  }
+
+  &.TabActive:focus {
+    outline-color: black;
+  }
+
+  &:active:not(.TabActive) {
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2) inset;
+  }
+
+  &Active,
+  &:hover {
     background-color: $color-active;
     color: #fff;
+    transition: all 300ms;
   }
 }
 
@@ -78,4 +135,12 @@
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
+
+  &:active {
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2) inset;
+  }
+
+  &:focus {
+    outline-color: black;
+  }
 }
