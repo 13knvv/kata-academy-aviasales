@@ -25,12 +25,13 @@
       }
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "semi": [1, "always"],
     "no-plusplus": "off",
     "no-unused-expressions": "off",
+    "default-param-last": 0,
+    "import/no-extraneous-dependencies": [ "error", { "packageDir": "./" } ],
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

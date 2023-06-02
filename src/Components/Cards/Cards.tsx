@@ -4,8 +4,8 @@ import logo from '../../assets/images/S7Logo.svg';
 function Cards() {
   return (
     <ul className={s.Cards}>
-      {[1, 2, 3, 4, 5].map(() => (
-        <li className={s.Card}>
+      {[1, 2, 3, 4, 5].map((i) => (
+        <li className={s.Card} key={i}>
           <header className={s.header}>
             <h2 className={s.price}>13 400 r</h2>
             <img src={logo} alt="s7" />
