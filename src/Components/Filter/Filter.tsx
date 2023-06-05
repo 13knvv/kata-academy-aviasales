@@ -2,14 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import s from './Filter.module.scss';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import {
-  setAllFilters,
-  setFilterAll,
-  setFilterOneTransfer,
-  setFilterThreeTransfers,
-  setFilterTwoTransfers,
-  setFilterWithoutTransfers,
-} from '../../redux/filterReducer';
+import { setAllFilters, setFilter, setFilterAll } from '../../redux/filterReducer';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -47,7 +40,7 @@ function Filter() {
             type="checkbox"
             id="all"
             name="transfers"
-            value="All"
+            value="all"
             checked={isAll}
             onChange={onClickAll}
           />
@@ -64,7 +57,7 @@ function Filter() {
             name="transfers"
             value="withoutTransfers"
             checked={isWithoutTransfers}
-            onChange={() => dispatch(setFilterWithoutTransfers())}
+            onChange={(e) => dispatch(setFilter(e.target.defaultValue))}
           />
           <div className={s.FilterCustomCheckbox} />
           <label className={s.FilterLabel} htmlFor="withoutTransfers">
@@ -79,7 +72,7 @@ function Filter() {
             name="transfers"
             value="oneTransfer"
             checked={isOneTransfer}
-            onChange={() => dispatch(setFilterOneTransfer())}
+            onChange={(e) => dispatch(setFilter(e.target.defaultValue))}
           />
           <div className={s.FilterCustomCheckbox} />
           <label className={s.FilterLabel} htmlFor="oneTransfer">
@@ -94,7 +87,7 @@ function Filter() {
             name="transfers"
             value="twoTransfers"
             checked={isTwoTransfers}
-            onChange={() => dispatch(setFilterTwoTransfers())}
+            onChange={(e) => dispatch(setFilter(e.target.defaultValue))}
           />
           <div className={s.FilterCustomCheckbox} />
           <label className={s.FilterLabel} htmlFor="twoTransfers">
@@ -109,7 +102,7 @@ function Filter() {
             name="transfers"
             value="threeTransfers"
             checked={isThreeTransfers}
-            onChange={() => dispatch(setFilterThreeTransfers())}
+            onChange={(e) => dispatch(setFilter(e.target.defaultValue))}
           />
           <div className={s.FilterCustomCheckbox} />
           <label className={s.FilterLabel} htmlFor="threeTransfers">
