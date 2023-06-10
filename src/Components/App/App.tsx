@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setSortBy } from '../../redux/sortReducer';
@@ -14,6 +14,8 @@ function App() {
   const isFirstRender = useRef<boolean>(true);
   const sortBy = useTypedSelector((state) => state.sort.sortBy);
   const dicpatch = useDispatch();
+  const [renderCountTickets, setRenderCountTickets] = useState(5);
+  const [isTicketsByFilter, setIsTicketsByFilter] = useState(false);
 
   useEffect(() => {
     if (!isFirstRender.current) {
@@ -26,9 +28,6 @@ function App() {
 
   return (
     <div className={s.App}>
-      <button type="button" onClick={() => dicpatch(getTickets())}>
-        get
-      </button>
       <img className={s.AppLogo} src={logo} alt="Aviasales" />
       <aside className={s.AppAside}>
         <Filter />
@@ -63,10 +62,12 @@ function App() {
             </button>
           </li>
         </ul>
-        <Cards />
-        <button className={s.ButtonMore} type="button">
-          Показать еще 5 билетов!
-        </button>
+        <Cards renderCountTickets={renderCountTickets} setIsTicketsByFilter={setIsTicketsByFilter} />
+        {isTicketsByFilter && (
+          <button className={s.ButtonMore} type="button" onClick={() => setRenderCountTickets(renderCountTickets + 5)}>
+            Показать еще 5 билетов!
+          </button>
+        )}
       </main>
     </div>
   );

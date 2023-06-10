@@ -83,32 +83,34 @@ const ticketsReducer = (state = initialState, action: Actions): IStateTickets =>
 export const setTickets = (tickets: ITicket[]): IActionSetTickets => ({ type: SET_TICKETS, payload: tickets });
 export const setIsError = (value: boolean): IActionSetIsError => ({ type: SET_IS_ERROR, payload: value });
 
-export const getTickets = () => async (dispatch: ThunkDispatch<IStateTickets, void, Actions>) => {
-  try {
-    if (api.searchId) {
-      // eslint-disable-next-line no-use-before-define
-      await getTicketsHelpFunc(dispatch);
-      return;
+let errorsNumber = 0;
+
+export const getTickets =
+  () => async (dispatch: ThunkDispatch<IStateTickets, void, Actions>, getState: () => IStateTickets) => {
+    if (getState().isError) {
+      dispatch(setIsError(false));
     }
 
-    const initOk = await api.initApp();
+    try {
+      if (!api.searchId) {
+        const initOk = await api.initApp();
+        if (!initOk) {
+          dispatch(getTickets());
+          return;
+        }
+      }
+      const data = await api.getTickets();
+      dispatch(setTickets(data.tickets));
 
-    if (initOk) {
-      // eslint-disable-next-line no-use-before-define
-      await getTicketsHelpFunc(dispatch);
+      if (!data.stop) {
+        dispatch(getTickets());
+      }
+
+      errorsNumber = 0;
+    } catch (error) {
+      errorsNumber++;
+      errorsNumber > 5 ? dispatch(setIsError(true)) : dispatch(getTickets());
     }
-  } catch (error) {
-    dispatch(setIsError(true));
-    dispatch(getTickets());
-  }
-};
-
-async function getTicketsHelpFunc(dispatch: ThunkDispatch<IStateTickets, void, Actions>) {
-  const data = await api.getTickets();
-  dispatch(setTickets(data.tickets));
-  if (!data.stop) {
-    dispatch(getTickets());
-  }
-}
+  };
 
 export default ticketsReducer;

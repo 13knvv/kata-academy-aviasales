@@ -29,11 +29,11 @@ interface ActionSetFilter {
 type Actions = ActionSetFilterAll | ActionSetAllFilters | ActionSetFilter;
 
 const initialState: StateFilter = {
-  all: false,
-  withoutTransfers: false,
-  oneTransfer: false,
-  twoTransfers: false,
-  threeTransfers: false,
+  all: true,
+  withoutTransfers: true,
+  oneTransfer: true,
+  twoTransfers: true,
+  threeTransfers: true,
 };
 
 const filterReducer = (state = initialState, action: Actions): StateFilter => {
