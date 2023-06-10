@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setSortBy } from '../../redux/sortReducer';
@@ -8,13 +8,31 @@ import s from './App.module.scss';
 import logo from '../../assets/images/logo.svg';
 import Cards from '../Cards/Cards';
 import Filter from '../Filter/Filter';
+import { getTickets } from '../../redux/ticketsReducer';
 
 function App() {
+  const isFirstRender = useRef<boolean>(true);
   const sortBy = useTypedSelector((state) => state.sort.sortBy);
   const dicpatch = useDispatch();
 
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      return;
+    }
+    isFirstRender.current = false;
+
+    try {
+      dicpatch(getTickets());
+    } catch (error) {
+      console.log('error getTickets');
+    }
+  }, []);
+
   return (
     <div className={s.App}>
+      <button type="button" onClick={() => dicpatch(getTickets())}>
+        get
+      </button>
       <img className={s.AppLogo} src={logo} alt="Aviasales" />
       <aside className={s.AppAside}>
         <Filter />
