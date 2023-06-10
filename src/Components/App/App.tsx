@@ -21,11 +21,7 @@ function App() {
     }
     isFirstRender.current = false;
 
-    try {
-      dicpatch(getTickets());
-    } catch (error) {
-      console.log('error getTickets');
-    }
+    dicpatch(getTickets());
   }, []);
 
   return (

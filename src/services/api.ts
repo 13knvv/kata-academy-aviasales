@@ -4,7 +4,6 @@ const api = {
 
   async initApp() {
     const resp = await fetch(`${this.baseUrl}/search`);
-
     const data = await resp.json();
 
     if (!resp.ok) {
@@ -16,7 +15,6 @@ const api = {
 
   async getTickets() {
     const resp = await fetch(`${this.baseUrl}/tickets?searchId=${this.searchId}`);
-
     const data = await resp.json();
 
     if (!resp.ok) {

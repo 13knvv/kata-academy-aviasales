@@ -86,24 +86,29 @@ export const setIsError = (value: boolean): IActionSetIsError => ({ type: SET_IS
 export const getTickets = () => async (dispatch: ThunkDispatch<IStateTickets, void, Actions>) => {
   try {
     if (api.searchId) {
-      const data = await api.getTickets();
-      console.log('1', data);
-      dispatch(setTickets(data.tickets));
+      // eslint-disable-next-line no-use-before-define
+      await getTicketsHelpFunc(dispatch);
       return;
     }
 
     const initOk = await api.initApp();
 
     if (initOk) {
-      const data = await api.getTickets();
-      console.log('2', data);
-      dispatch(setTickets(data.tickets));
+      // eslint-disable-next-line no-use-before-define
+      await getTicketsHelpFunc(dispatch);
     }
   } catch (error) {
     dispatch(setIsError(true));
-    // eslint-disable-next-line no-console
-    console.error(error);
+    dispatch(getTickets());
   }
 };
+
+async function getTicketsHelpFunc(dispatch: ThunkDispatch<IStateTickets, void, Actions>) {
+  const data = await api.getTickets();
+  dispatch(setTickets(data.tickets));
+  if (!data.stop) {
+    dispatch(getTickets());
+  }
+}
 
 export default ticketsReducer;
